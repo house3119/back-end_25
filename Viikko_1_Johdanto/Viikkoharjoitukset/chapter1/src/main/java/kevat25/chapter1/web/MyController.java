@@ -23,7 +23,7 @@ public class MyController {
   
   @RequestMapping("hello")
   @ResponseBody
-  public String requestMethodName(@RequestParam String location, @RequestParam String name) {
+  public String helloMethod(@RequestParam String location, @RequestParam String name) {
       return "Welcome to the " + location + " " + name;
   }
   
