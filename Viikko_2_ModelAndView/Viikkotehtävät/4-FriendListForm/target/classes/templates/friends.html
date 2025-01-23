@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Friends</title>
+</head>
+<body>
+  <h1>My friends</h1>
+  <ul>
+    <li th:each="friend: ${friends}" style="margin-bottom: 5px;">
+      <span th:text="${friend.firstName}"></span>
+      <span th:text="${friend.lastName}"></span>
+    </li>
+  </ul>
+  <a th:href="@{/add}">Add friend</a>
+</body>
+</html>

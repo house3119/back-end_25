@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Add new friend</h1>
+  <form action="#" th:action="@{/newfriend}" th:object="${friend}" method="post">
+    <div style="margin-bottom: 5px;">
+      <label for="first-name-input" style="display: inline-block; width: 70px;">First name</label>
+      <input type="text" id="first-name-input" th:field="*{firstName}">
+    </div>
+    <div style="margin-bottom: 10px;">
+      <label for="last-name-input" style="display: inline-block; width: 70px;">Last name</label>
+      <input type="text" id="last-name-input" th:field="*{lastName}">
+    </div>
+    <input type="submit" value="Add Friend">
+  </form>
+</body>
+</html>

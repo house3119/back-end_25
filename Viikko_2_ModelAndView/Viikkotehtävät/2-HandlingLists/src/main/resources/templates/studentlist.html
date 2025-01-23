@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Handling Lists</title>
+</head>
+<body>
+  <div>Welcome to the Haaga-Helia!</div>
+  <div th:each="student: ${students}">
+    <span th:text="${student.firstName}"></span>
+    <span th:text="${student.lastName}"></span>
+  </div>
+</body>
+</html>
