@@ -27,6 +27,7 @@ public class BookstoreApplication {
 
 			bookRepository.save(new Book("Lord of the Rings: The Two Towers", "J.R.R. Tolkien", "1954", "978-951-0-33337-2", "24.00"));
 			bookRepository.save(new Book("Harry Potter and the Philosopher's Stone", "J.K. Rowling", "1997", "951-31-1146-6", "19.00"));
+			bookRepository.save(new Book("Kafka on the Shore", "H. Murakami", "2002", "1-84343-110-6", "9.90"));
 
 			log.info("Printing list of books...");
 
@@ -35,7 +36,7 @@ public class BookstoreApplication {
 			}
 
 		};
-		
+
 	}
 
 }

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Bookstore</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+  <body>
+    <h1>Add new book</h1>
+    <form action="#" th:action="@{/addbook}" th:object="${book}" method="post">
+      <div style="margin-bottom: 5px;">
+        <label for="" style="display: inline-block; width: 70px;">Title</label>
+        <input type="text" id="" th:field="*{title}">
+      </div>
+      <div style="margin-bottom: 5px;">
+        <label for="" style="display: inline-block; width: 70px;">Author</label>
+        <input type="text" id="" th:field="*{author}">
+      </div>
+      <div style="margin-bottom: 5px;">
+        <label for="" style="display: inline-block; width: 70px;">Pub. Year</label>
+        <input type="text" id="" th:field="*{publicationYear}">
+      </div>
+      <div style="margin-bottom: 5px;">
+        <label for="" style="display: inline-block; width: 70px;">ISBN</label>
+        <input type="text" id="" th:field="*{isbn}">
+      </div>
+      <div style="margin-bottom: 10px;">
+        <label for="" style="display: inline-block; width: 70px;">Price</label>
+        <input type="number" min="0" step=".01" id="" th:field="*{price}">
+      </div>
+      <input type="submit" value="Save">
+      <a href="/booklist">Cancel</a>
+    </form>
+  </body>
+</html>
