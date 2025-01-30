@@ -1,10 +1,20 @@
 package bookstore.bookstore.model;
 
-public class Book {
-  String title, author, publicationYear, isbn, price;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
-  public String getTitle() {
-    return title;
+@Entity
+public class Book {
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+  private String title, author, publicationYear, isbn, price;
+
+  public Book() {
+    
   }
 
   public Book(String title, String author, String publicationYear, String isbn, String price) {
@@ -15,49 +25,50 @@ public class Book {
     this.price = price;
   }
 
-  public Book() {
-  }
-
-  public String getAuthor() {
-    return author;
-  }
-
-  public String getPublicationYear() {
-    return publicationYear;
-  }
-
-  public String getIsbn() {
-    return isbn;
+  public String getTitle() {
+    return title;
   }
 
   public void setTitle(String title) {
     this.title = title;
   }
 
+  public String getAuthor() {
+    return author;
+  }
+
   public void setAuthor(String author) {
     this.author = author;
+  }
+
+  public String getPublicationYear() {
+    return publicationYear;
   }
 
   public void setPublicationYear(String publicationYear) {
     this.publicationYear = publicationYear;
   }
 
-  public void setIsbn(String isbn) {
-    this.isbn = isbn;
+  public String getIsbn() {
+    return isbn;
   }
 
-  public void setPrice(String price) {
-    this.price = price;
+  public void setIsbn(String isbn) {
+    this.isbn = isbn;
   }
 
   public String getPrice() {
     return price;
   }
 
+  public void setPrice(String price) {
+    this.price = price;
+  }
+
   @Override
   public String toString() {
-    return "Book [title=" + title + ", author=" + author + ", publicationYear=" + publicationYear + ", isbn=" + isbn
-        + ", price=" + price + "]";
+    return "Book [id=" + id + ", title=" + title + ", author=" + author + ", publicationYear=" + publicationYear
+        + ", isbn=" + isbn + ", price=" + price + "]";
   }
   
 }
