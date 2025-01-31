@@ -53,7 +53,7 @@ public class BookstoreController {
         return "redirect:/booklist";
       }
 
-      // Book found. Update all values and save it
+      // Book found found. Update all values..
       oldBook.setTitle(book.getTitle());
       oldBook.setAuthor(book.getAuthor());
       oldBook.setIsbn(book.getIsbn());
@@ -84,7 +84,6 @@ public class BookstoreController {
       return "editbook";
     }
   }
-  
 
 
   @RequestMapping(value="index", method=RequestMethod.GET)
