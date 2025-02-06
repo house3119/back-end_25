@@ -2,6 +2,8 @@ package bookstore.bookstore.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import bookstore.bookstore.model.Book;
 import bookstore.bookstore.model.BookRepository;
 import bookstore.bookstore.model.CategoryRepository;
+import jakarta.validation.Valid;
 
 
 @Controller
@@ -40,15 +43,27 @@ public class BookstoreController {
 
   // Used to save books from either creating a new book or editing an existing one
   @RequestMapping(value={"/savebook","/savebook/{id}"}, method=RequestMethod.POST)
-  public String saveBook(Book book, @PathVariable(required = false) Long id) {
+  public String saveBook(@Valid  Book book, BindingResult bindingResult, @PathVariable(required = false) Long id, Model model) {
 
     // ID not in request, so should be a new book. Save it to DB
     if (id == null) {
+      if (bindingResult.hasErrors()) {
+        model.addAttribute("book", book);
+        model.addAttribute("categories", categoryRepository.findAll());
+        return "addbook";
+      }
+
       System.out.println("Uusi kirja");
       bookRepository.save(book);
 
     // ID in request, so should be editing of existing book
     } else {
+      if (bindingResult.hasErrors()) {
+        model.addAttribute("book", book);
+        model.addAttribute("categories", categoryRepository.findAll());
+        return "editbook";
+      }
+
       System.out.println("Vanha kirja");
 
       // Try to find existing book. If can't find it, redirect to booklist

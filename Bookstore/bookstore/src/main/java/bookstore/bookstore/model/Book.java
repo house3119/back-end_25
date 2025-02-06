@@ -6,6 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotEmpty;
 
 @Entity
 public class Book {
@@ -14,7 +15,13 @@ public class Book {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  private String title, author, publicationYear, isbn, price;
+  @NotEmpty(message = "Title is mandatory")
+  private String title;
+
+  @NotEmpty(message = "Author is mandatory")
+  private String author;
+  
+  private String publicationYear, isbn, price;
 
   @ManyToOne
   @JoinColumn(name = "categoryid")
