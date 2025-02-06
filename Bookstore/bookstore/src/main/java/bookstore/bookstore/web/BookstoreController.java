@@ -8,15 +8,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import bookstore.bookstore.model.Book;
 import bookstore.bookstore.model.BookRepository;
+import bookstore.bookstore.model.CategoryRepository;
 
 
 @Controller
 public class BookstoreController {
 
   private BookRepository bookRepository;
+  private CategoryRepository categoryRepository;
 
-  public BookstoreController(BookRepository bookRepository) {
+  public BookstoreController(BookRepository bookRepository, CategoryRepository categoryRepository) {
     this.bookRepository = bookRepository;
+    this.categoryRepository = categoryRepository;
   }
 
 
@@ -30,6 +33,7 @@ public class BookstoreController {
   @RequestMapping(value="addbook", method=RequestMethod.GET)
   public String addBook(Model model) {
     model.addAttribute("book", new Book());
+    model.addAttribute("categories", categoryRepository.findAll());
     return "addbook";
   }
   
@@ -59,6 +63,7 @@ public class BookstoreController {
       oldBook.setIsbn(book.getIsbn());
       oldBook.setPublicationYear(book.getPublicationYear());
       oldBook.setPrice(book.getPrice());
+      oldBook.setCategory(book.getCategory());
       bookRepository.save(oldBook);
     }
     return "redirect:/booklist";
@@ -81,6 +86,7 @@ public class BookstoreController {
       return "redirect:../booklist";
     } else {
       model.addAttribute("book", editBook);
+      model.addAttribute("categories", categoryRepository.findAll());
       return "editbook";
     }
   }

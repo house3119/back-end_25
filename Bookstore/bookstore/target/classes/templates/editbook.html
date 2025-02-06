@@ -40,6 +40,17 @@
           </label>
           <input class="form-control" type="text" id="" th:field="*{isbn}">
         </div>
+        <div class="form-group" style="margin-bottom: 5px;">
+          <label for="" style="display: inline-block; width: 70px;">
+            Category
+          </label>
+          <select class="form-select" th:field="*{category}">
+            <option th:each="category: ${categories}"
+                    th:value="${category.categoryid}"
+                    th:text="${category.name}">
+            </option>
+          </select>
+        </div>
         <div class="form-group" style="margin-bottom: 10px;">
           <label for="" style="display: inline-block; width: 70px;">
             Price
