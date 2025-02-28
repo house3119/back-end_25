@@ -9,8 +9,10 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 
 
 @RestController
@@ -24,12 +26,20 @@ public class BookstoreRestController {
 
   @RequestMapping(value="books", method=RequestMethod.GET)
   public List<Book> getAllBooks() {
-      return (List<Book>) bookRepository.findAll();
+    return (List<Book>) bookRepository.findAll();
+  }
+
+  @RequestMapping(value="books", method=RequestMethod.POST)
+  public Book postNewBook(@RequestBody Book book) {
+    return bookRepository.save(book);
   }
   
   @RequestMapping(value="books/{id}", method=RequestMethod.GET)
   public Optional<Book> getBookById(@PathVariable(required = true) Long id) {
-      return bookRepository.findById(id);
+    return bookRepository.findById(id);
   }
+
+
+  
   
 }

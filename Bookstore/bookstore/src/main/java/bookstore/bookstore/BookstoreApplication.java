@@ -7,6 +7,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import bookstore.bookstore.model.AppUser;
+import bookstore.bookstore.model.AppUserRepository;
 import bookstore.bookstore.model.Book;
 import bookstore.bookstore.model.Category;
 import bookstore.bookstore.model.BookRepository;
@@ -22,7 +24,11 @@ public class BookstoreApplication {
 	}
 
 	@Bean
-	public CommandLineRunner bookStoreRunner(BookRepository bookRepository, CategoryRepository categoryRepository) {
+	public CommandLineRunner bookStoreRunner(
+		BookRepository bookRepository,
+		CategoryRepository categoryRepository,
+		AppUserRepository appUserRepository
+		) {
 		return(args) -> {
 
 			Category category1 = new Category("Fantasy");
@@ -45,6 +51,12 @@ public class BookstoreApplication {
 			for (Book book: bookRepository.findAll()) {
 				log.info(book.toString());
 			}
+
+			AppUser user1 = new AppUser("user", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "USER");
+			AppUser user2 = new AppUser("admin", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C", "ADMIN");
+
+			appUserRepository.save(user1);
+			appUserRepository.save(user2);
 
 		};
 

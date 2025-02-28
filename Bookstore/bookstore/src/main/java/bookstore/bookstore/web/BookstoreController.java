@@ -25,6 +25,10 @@ public class BookstoreController {
     this.categoryRepository = categoryRepository;
   }
 
+  @RequestMapping(value="/login")
+  public String login() {	
+      return "login";
+  }
 
   @RequestMapping(value="booklist", method=RequestMethod.GET)
   public String booklist(Model model) {

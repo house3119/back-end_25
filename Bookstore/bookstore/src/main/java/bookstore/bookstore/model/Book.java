@@ -27,7 +27,6 @@ public class Book {
 
   @ManyToOne
   @JoinColumn(name = "categoryid")
-  @JsonIgnore
   private Category category;
 
   public Book() {}
