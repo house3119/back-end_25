@@ -11,8 +11,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
+
 @Entity
 public class Category {
+
   @Id
   @GeneratedValue(strategy=GenerationType.AUTO)
   private Long categoryid;
@@ -57,8 +59,5 @@ public class Category {
   public String toString() {
     return "Category [categoryid=" + categoryid + ", name=" + name + ", books=" + books + "]";
   }
-
-  
-
 
 }

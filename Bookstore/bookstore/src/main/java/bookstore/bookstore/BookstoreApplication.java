@@ -14,6 +14,7 @@ import bookstore.bookstore.model.Category;
 import bookstore.bookstore.model.BookRepository;
 import bookstore.bookstore.model.CategoryRepository;
 
+
 @SpringBootApplication
 public class BookstoreApplication {
 

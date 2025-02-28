@@ -8,11 +8,11 @@ import bookstore.bookstore.model.BookRepository;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 
 
 @RestController
@@ -29,6 +29,7 @@ public class BookstoreRestController {
     return (List<Book>) bookRepository.findAll();
   }
 
+  @PreAuthorize("hasAuthority('ADMIN')")
   @RequestMapping(value="books", method=RequestMethod.POST)
   public Book postNewBook(@RequestBody Book book) {
     return bookRepository.save(book);
@@ -39,7 +40,4 @@ public class BookstoreRestController {
     return bookRepository.findById(id);
   }
 
-
-  
-  
 }

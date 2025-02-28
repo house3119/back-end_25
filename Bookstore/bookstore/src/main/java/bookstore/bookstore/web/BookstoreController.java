@@ -1,9 +1,9 @@
 package bookstore.bookstore.web;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -36,7 +36,7 @@ public class BookstoreController {
     return "booklist";
   }
 
-  
+  @PreAuthorize("hasAuthority('ADMIN')")
   @RequestMapping(value="addbook", method=RequestMethod.GET)
   public String addBook(Model model) {
     model.addAttribute("book", new Book());
@@ -46,6 +46,7 @@ public class BookstoreController {
   
 
   // Used to save books from either creating a new book or editing an existing one
+  @PreAuthorize("hasAuthority('ADMIN')")
   @RequestMapping(value={"/savebook","/savebook/{id}"}, method=RequestMethod.POST)
   public String saveBook(@Valid  Book book, BindingResult bindingResult, @PathVariable(required = false) Long id, Model model) {
 
@@ -88,14 +89,14 @@ public class BookstoreController {
     return "redirect:/booklist";
   }
 
-  
+  @PreAuthorize("hasAuthority('ADMIN')")
   @RequestMapping(value="/delete/{id}", method=RequestMethod.GET)
   public String deleteBook(@PathVariable("id") Long bookId) {
     bookRepository.deleteById(bookId);
     return "redirect:../booklist";
   }
 
-
+  @PreAuthorize("hasAuthority('ADMIN')")
   @RequestMapping(value="/edit/{id}", method=RequestMethod.GET)
   public String editBook(@PathVariable("id") Long bookId, Model model) {
     Book editBook = bookRepository.findById(bookId).orElse(null);
@@ -110,6 +111,12 @@ public class BookstoreController {
     }
   }
 
+  /*
+  @RequestMapping(value="/error", method=RequestMethod.GET)
+  public String handleError() {
+    return "redirect:../booklist";
+  }
+  */
 
   @RequestMapping(value="index", method=RequestMethod.GET)
   public String getIndex() {

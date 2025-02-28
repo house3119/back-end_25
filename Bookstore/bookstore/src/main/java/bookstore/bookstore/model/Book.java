@@ -10,6 +10,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotEmpty;
 
+
 @Entity
 public class Book {
 
@@ -31,8 +32,6 @@ public class Book {
 
   public Book() {}
 
-
-
   public Book(String title, String author, String publicationYear, String isbn, String price, Category category) {
     super();
     this.title = title;
@@ -42,8 +41,6 @@ public class Book {
     this.price = price;
     this.category = category;
   }
-
-
 
   public Long getId() {
     return id;
@@ -93,6 +90,14 @@ public class Book {
     this.price = price;
   }
 
+  public Category getCategory() {
+    return category;
+  }
+
+  public void setCategory(Category category) {
+    this.category = category;
+  }
+
   @Override
   public String toString() {
     if (this.category != null) {
@@ -105,16 +110,4 @@ public class Book {
 
   }
 
-
-
-  public Category getCategory() {
-    return category;
-  }
-
-
-
-  public void setCategory(Category category) {
-    this.category = category;
-  }
-  
 }

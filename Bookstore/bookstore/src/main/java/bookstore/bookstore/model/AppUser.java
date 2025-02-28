@@ -1,30 +1,29 @@
 package bookstore.bookstore.model;
 
-
-
 import jakarta.persistence.*;
+
 
 @Entity
 @Table(name="UserTable")
 public class AppUser {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false, updatable = false)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", nullable = false, updatable = false)
+	private Long id;
 
-    // Username with unique constraint
-    @Column(name = "username", nullable = false, unique = true)
-    private String username;
+	// Username with unique constraint
+	@Column(name = "username", nullable = false, unique = true)
+	private String username;
 
-    @Column(name = "password", nullable = false)
-    private String passwordHash;
+	@Column(name = "password", nullable = false)
+	private String passwordHash;
 
-    @Column(name = "role", nullable = false)
-    private String role;
-    
-    public AppUser() {
-    }
+	@Column(name = "role", nullable = false)
+	private String role;
+	
+	public AppUser() {
+	}
 
 	public AppUser(String username, String passwordHash, String role) {
 		super();
